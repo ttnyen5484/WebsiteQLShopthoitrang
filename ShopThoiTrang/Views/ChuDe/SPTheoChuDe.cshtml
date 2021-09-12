@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "SPTheoChuDe";
+    Layout = "~/Views/Shared/ShopThoiTrang.cshtml";
+}
+
+@using ShopThoiTrang.Models
+@model List<SANPHAM>
+    <legend class="display-4 container">SẢN PHẨM THEO LOẠI</legend>
+    <span class="display-4 container" style="font-weight:bold; font-size:50px; color:red; margin-left:38%">@ViewBag.SP</span>
+
+<div class="product-group container">
+    <div class="row">
+        @foreach (SANPHAM s in Model)
+        {
+            <div class="col-lg-3">
+                <div class="card mb-4 box-shadow">
+                    <a href="@Url.Action("Details", "ThoiTrang", new { msp = s.MASP })">
+                        <img class="card-img-top" src="~/Image/@s.ANH" style="height: 100%; width: 100%; display: block;" data-holder-rendered="true" />
+                    </a>
+                    <div class="card-body" style="text-decoration:none">
+                        <h5 class="card-title" style="font-size:16px">@s.TENSP</h5>
+                        <p class="card-text">
+                            <b style="font-size:18px;font-weight:normal" class="text-dark">@s.GIA <span style="text-decoration:underline;font-size:14px;color:black">đ</span></b>
+                            <div class="d-flex justify-content-between align-items-center float-right">
+                                <div class="btn-group">
+                                    @Html.ActionLink("Chi tiết", "Details", "ThoiTrang", new { msp = @s.MASP }, new { @class = "btn btn-sm btn-outline-success" })
+                                    <a href="@Url.Action("ThemMatHang", "DatHang", new {msp=@s.MASP })" class="btn btn-sm btn-outline-success"><i class="fa fa-cart-plus"></i></a>
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

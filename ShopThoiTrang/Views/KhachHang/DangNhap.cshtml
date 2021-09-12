@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/ShopThoiTrang.cshtml";
+}
+
+@if (Request.HttpMethod == "POST")
+{
+    if (ViewBag.tb != null)
+    {
+        <p class="container text-danger text-bold" style="width:60%;margin-top:30px;font-size:20px">@ViewBag.tb</p>
+    }
+}
+
+<form action="/KhachHang/DangNhap" method="post">
+    <div class="container" style="width:60%;margin-top:80px;">
+        <h4 class="display-4 container justify-content-between align-items-center" style="margin-left:35%">Đăng Nhập</h4>
+        <div class="form-group">
+            <label for="uname"><b>Username</b></label>
+            <input id="tname" type="text" class="form-control" placeholder="Enter Username" name="txtName" required />
+            <br />
+            <label for="psw"><b>Password</b></label>
+            <input type="password" class="form-control" placeholder="Enter Password" name="txtPass" required />
+            <br />
+            <button type="submit" class="btn btn-success" style="width:100%">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember" /> Remember me
+            </label>
+
+            <p>Bạn chưa có tài khoản? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue"><a href="@Url.Action("DangKy","KhachHang")">Đăng ký ngay</a></span></p>
+        </div>
+
+    </div>
+</form>
+<br />
+<br />
+<br />
+

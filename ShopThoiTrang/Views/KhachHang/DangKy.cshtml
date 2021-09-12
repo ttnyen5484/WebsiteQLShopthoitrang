@@ -1,0 +1,123 @@
+﻿@model ShopThoiTrang.Models.KHACHHANG
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/ShopThoiTrang.cshtml";
+}
+<br />
+@*@if (Request.HttpMethod == "POST")
+    {
+        if (ViewBag.tb != null)
+        {
+            <p class="container text-danger text-bold" style="width:60%;margin-top:30px;font-size:20px">@ViewBag.tb</p>
+        }
+    }*@
+
+@if (!string.IsNullOrEmpty(ViewBag.tb))
+{
+    <script type="text/javascript">
+        alert("@ViewBag.tb");
+    </script>
+}
+
+
+<div class="row">
+
+    @if (TempData["AlertMessage"] != null)
+    {
+        <div id="AlertBox" class="alert @TempData["AlertType"] hide" role="alert">
+            @TempData["AlertMessage"]
+        </div>
+    }
+</div>
+<div style="margin-left:10%; margin-right:10%">
+    <h2 class="display-4 container justify-content-between align-items-center" style="margin-left:35%">Đăng Ký</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+
+        <br />
+        <div class="registration-form">
+            <div class="form">
+                <div class="form-group">
+                    <label><b>Tên khách hàng</b></label>
+                    <input class="form-control item" type="text" placeholder="Enter Name" name="tenkh" required />
+                </div><br />
+
+                <div class="form-group">
+                    <label><b>Ngày sinh</b></label>
+                    @*<input class="form-control item" type="text" placeholder="Enter Name" name="ngaysinh" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required/>
+                        <br />*@
+                    <input class="form-control" type="date" name="ngaysinh" style="width:100%" required>
+                </div><br />
+
+
+                <div class="form-group">
+                    <label><b>Số điện thoại</b></label>
+                    <input class="form-control item" type="text" placeholder="Enter Name" name="sdt" id="mobile" pattern="(09|03|07|08|05)+([0-9]{8})" title="Số điện thoại không đúng định dạng" required />
+
+                </div><br />
+
+                <div class="form-group">
+                    <label><b>Địa chỉ</b></label>
+                    <input class="form-control item" type="text" placeholder="Enter Address" name="diachi" required />
+                </div><br />
+
+                <div class="form-group">
+                    <label><b>Email</b></label>
+                    <input class="form-control item" type="email" name="gmail" id="email" pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$" title="Email không đúng định dạng" placeholder="Example@gmail.com" required>
+
+                </div><br />
+
+                <div class="form-group">
+                    <label><b>Tên đăng nhập</b></label>
+                    <input class="form-control item" type="text" placeholder="Enter TenDN" name="tenDN" required />
+                </div><br />
+
+                <div class="form-group">
+                    <label><b>Mật khẩu</b></label>
+                    <input class="form-control item" type="password" name="pass" id="password" placeholder="Password" pattern=".{,8}"
+                           title="Mật khẩu tối đa 8 kí tự" required />
+                </div><br />
+
+                <div class="form-group">
+                    <label><b>Xác nhận mật khẩu</b></label>
+                    <input class="form-control item" type="password" name="repassword" id="repassword" placeholder="Password" onkeyup="xacnhanMK()" required />
+                    <p id="mess" style="font-size:11px"></p>
+
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px" /> Remember me
+                    </label>
+                    <br />
+                    <div class="clearfix">
+                        <input type="button" value="Cancel" class="btn btn-danger" style="width:49%" />
+                        <input type="submit" value="Sign Up" id="btn" class="btn btn-success" style="width:49%; float:right">
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                function xacnhanMK() {
+                    var txtpass = document.getElementById('password').value;
+                    var txtrepass = document.getElementById('repassword').value;
+
+                    if (txtpass == txtrepass) {
+                        document.getElementById('mess').innerHTML = "Trùng Khớp";
+                        document.getElementById('mess').style.color = "Green";
+                    }
+                    else {
+                        document.getElementById('mess').innerHTML = "Mật Khẩu Không Trùng Khớp";
+                        document.getElementById('mess').style.color = "Red";
+                    }
+                }
+            </script>
+
+
+        </div>
+    }
+</div>
+<br />
+<br />
+<br />
+
+

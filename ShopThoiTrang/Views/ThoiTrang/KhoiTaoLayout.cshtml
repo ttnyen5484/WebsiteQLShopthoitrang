@@ -1,0 +1,12 @@
+﻿@using ShopThoiTrang.Models;
+@model GioHang
+
+@if (Model == null)
+{
+    <label>(0)</label>
+}
+else
+{
+    <label> ( @Model.soMatHang() ) </label>
+}
+

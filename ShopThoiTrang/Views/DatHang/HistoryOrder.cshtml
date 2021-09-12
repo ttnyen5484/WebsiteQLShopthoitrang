@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "HistoryOrder";
+    Layout = "~/Views/Shared/ShopThoiTrang.cshtml";
+    <link href="~/CSS/Style1.css" rel="stylesheet" />
+    List<HOADON> ds_hoadon = ViewBag.Loai;
+}
+
+@using ShopThoiTrang.Models
+@model HOADON
+
+
+<h2 class="container">THÔNG TIN LỊCH SỬ MUA HÀNG</h2>
+<div>
+    <table>
+        <tr style="background-color:gray;color:white">
+            <th>Mã hóa đơn</th>
+            <th>Ngày mua</th>
+            <th>Thành tiền</th>
+            <th>Trạng thái giao hàng</th>
+            <th></th>
+        </tr>
+            @foreach (HOADON item in ds_hoadon)
+            {
+        <tr>
+            <td>@item.MAHD</td>
+            <td>@item.NGAYTAO</td>
+            <td>@item.THANHTOAN</td>
+            <td>@item.TTTHANHTOAN</td>
+            <td style="width:16%"><a href="@Url.Action("Details", "ThoiTrang", new { @makh = item.MAKH })" class="btn btn-warning">Details</a></td>
+        </tr>
+            }
+    </table>
+</div>
+
+

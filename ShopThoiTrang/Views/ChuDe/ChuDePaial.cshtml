@@ -1,0 +1,28 @@
+﻿@using ShopThoiTrang.Models;
+@model List<LOAISP>
+<ul class="list-group list-group-flush text-left" style="font-family:'Courier New';font-weight:bold">
+    @{
+        foreach (var item in Model)
+        {
+            <li class="list-group-item" style="text-align:center; ">
+                <a href="@Url.Action("SPTheoChuDe", "ChuDe", new{@maCD = item.MALOAI})" style="text-transform:uppercase; text-decoration: none; color:#000000;">@item.TENLOAI</a>
+            </li>
+        }
+        <li class="list-group-item" style="text-transform:uppercase; text-decoration:none;text-align:center">
+            <a href="#" >
+                <i class="fa fa-youtube text-secondary"></i>
+                
+            </a>o
+            <a href="#">
+                <i class="fa fa-facebook text-secondary"></i>
+                
+            </a>
+            <a href="#">
+                <i class="fa fa-twitter text-secondary"></i>
+                
+            </a>
+            <a href="#"><i class="fa fa-instagram text-secondary"></i></a>
+        </li>
+    }
+
+</ul>
